@@ -37,4 +37,12 @@ app.get("/",(req,res)=>{
     res.send("API Working")
 })
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Catch-all handler to return the `index.html` file for any request that doesn't match an existing route or file
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 app.listen(port, ()=>{console.log(`Server Started on http://localhost:${port}`)})
