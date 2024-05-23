@@ -15,8 +15,14 @@ const port = 4000
 
 //middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors({
 
+    origin:["http://localhost:4000",
+    "https://mnrx-mern-food-delivery-frontend-app.onrender.com",
+    "https://mnrx-mern-food-delivery-admin-app.onrender.com"]
+
+}))
+app.use(express.urlencoded({extended:false}))
 //db connection
 connectDB()
 
